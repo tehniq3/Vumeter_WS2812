@@ -68,7 +68,7 @@ void loop() {
 
 
   n   = analogRead(MIC_PIN);                  // Raw reading from mic
-  n   = abs(n - 0 - DC_OFFSET); // Center on zero  // sometimes 256
+  n   = abs(n - 0 - DC_OFFSET); // Center on zero  // sometimes 512
   n   = (n <= NOISE) ? 0 : (n - NOISE);             // Remove noise/hum
   lvl = ((lvl * 7) + n) >> 3;    // "Dampened" reading (else looks twitchy)
 
