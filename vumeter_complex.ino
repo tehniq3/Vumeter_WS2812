@@ -174,9 +174,10 @@ void loop() {
       buttonPushCounter++;
       Serial.println("on");
       Serial.print("number of button pushes:  ");
-      Serial.println(buttonPushCounter);
+      
       if(buttonPushCounter>=14) {
       buttonPushCounter=1;}
+      Serial.println(buttonPushCounter);
       EEPROM.write(0,buttonPushCounter);
       
     } 
@@ -219,7 +220,7 @@ switch (buttonPushCounter){
       
        case 5:
      buttonPushCounter==5; {
-      rainbow(150);
+      rainbow(50);
        break;}
        
         case 6:
@@ -290,7 +291,7 @@ void Vu4() {
   val= map(val, 0, 1023, -10, 6);
   
   n   = analogRead(MIC_PIN);                        // Raw reading from mic 
-  n   = abs(n - 0 - DC_OFFSET); // Center on zero
+  n   = abs(n - 0 - DC_OFFSET); // Center on zero  // sometomes 256
   n   = (n <= NOISE) ? 0 : (n - NOISE);             // Remove noise/hum
   
     if(val<0){
@@ -377,9 +378,8 @@ void Vu3() {
   val= map(val, 0, 1023, -10, 6);
 
   n = analogRead(MIC_PIN);             // Raw reading from mic
-  n = abs(n - 512 - DC_OFFSET);        // Center on zero
+  n = abs(n - 0 - DC_OFFSET);        // Center on zero // sometomes 512
   n = (n <= NOISE) ? 0 : (n - NOISE);  // Remove noise/hum
-
       if(val<0){
        n=n/(val*(-1));
         }
@@ -509,7 +509,7 @@ void vu() {
   val= map(val, 0, 1023, -10, 6);
   
   n   = analogRead(MIC_PIN);                        // Raw reading from mic 
-  n   = abs(n - 512 - DC_OFFSET); // Center on zero
+  n   = abs(n - 0 - DC_OFFSET); // Center on zero   // sometomes 512
   n   = (n <= NOISE) ? 0 : (n - NOISE);             // Remove noise/hum
      if(val<0){
         n=n/(val*(-1));
@@ -595,7 +595,7 @@ void vu2() {
   val = (analogRead(potPin));  
   val= map(val, 0, 1023, -10, 6);
   n   = analogRead(MIC_PIN);                        // Raw reading from mic 
-  n   = abs(n - 512 - DC_OFFSET); // Center on zero
+  n   = abs(n - 0 - DC_OFFSET); // Center on zero  // sometomes 512
   n   = (n <= NOISE) ? 0 : (n - NOISE);             // Remove noise/hum
 
       if(val<0){
